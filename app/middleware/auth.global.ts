@@ -14,7 +14,9 @@
  * 3. Apply redirect logic
  */
 export default defineNuxtRouteMiddleware((to) => {
-  // TODO: const { isLoggedIn } = useAuth()
-  // TODO: if (!isLoggedIn && to.path !== '/login') return navigateTo('/login')
-  // TODO: if (isLoggedIn && to.path === '/login') return navigateTo('/')
+  if (!import.meta.client) return
+  
+  const { isLoggedIn } = useAuth()
+  if (!isLoggedIn.value && to.path !== '/login') return navigateTo('/login')
+  if (isLoggedIn.value && to.path === '/login') return navigateTo('/')
 })

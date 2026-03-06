@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxtjs/tailwindcss'],
+  css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
 })

@@ -12,22 +12,39 @@
  * - logout(): void
  */
 export function useAuth() {
-  // TODO: Get $pb from useNuxtApp()
-  // TODO: Create user ref (reactive state)
-  // TODO: Create isLoggedIn computed
-  // TODO: Implement login()
-  // TODO: Implement logout()
+  const { $pb } = useNuxtApp()
+
+  if (!$pb) return {
+    user: ref<Record<string, unknown> | null>(null),
+    isLoggedIn: computed(() => false),
+    login: async () => {},
+    logout: () => {},
+  }
+
+  const user = ref<Record<string, unknown> | null>($pb.authStore.record ?? null)
+
+  $pb.authStore.onChange(
+    (_token: string, model: Record<string, unknown> | null) => {
+      user.value = model ?? null
+    },
+    true
+  )
+
+  const isLoggedIn = computed(() => !!user.value)
+
+  async function login(email: string, password: string) {
+    await $pb.collection('users').authWithPassword(email, password)
+  }
+
+  function logout() {
+    $pb.authStore.clear()
+  }
 
   return {
-    user: ref(null),
-    isLoggedIn: computed(() => false),
-    login: async (_email: string, _password: string) => {
-      // TODO: Call pb.collection('users').authWithPassword()
-      // TODO: Update user state
-    },
-    logout: () => {
-      // TODO: pb.authStore.clear()
-      // TODO: Clear user state
-    },
+    user,
+    isLoggedIn,
+    login,
+    logout,
   }
 }
+
