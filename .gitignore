@@ -1,0 +1,26 @@
+# Nuxt
+.nuxt
+.output
+.data
+dist
+*.log
+node_modules
+
+# PocketBase
+pocketbase/pb_data
+pocketbase/pb_migrations/*.meta
+pocketbase/pocketbase
+pocketbase/*.zip
+
+# IDE
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
