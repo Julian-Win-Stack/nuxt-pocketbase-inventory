@@ -91,35 +91,41 @@ The goal of this project was to become comfortable with:
 ---
 
 ## Project Structure
-```
-app/
-  assets/css/main.css
-  components/ui/
-    Button.vue
-    DataTable.vue
-    StockPieChart.vue
-    Toast.vue
-    ToastContainer.vue
-    TopItemsBarChart.vue
-  composables/
-    useAuth.ts
-    useToast.ts
-  layouts/
-    default.vue
-  middleware/
-    auth.global.ts
-  pages/
-    index.vue
-    login.vue
-    settings.vue
-    items/
-      index.vue
-      [id].vue
-  plugins/
-    pocketbase.client.ts
-pocketbase/
-  pb_migrations/
-  pb_data/
+
+```text
+.
+├── app
+│   ├── app.vue                       # Root Nuxt application component
+│   ├── assets
+│   │   └── css
+│   │       └── main.css              # Global styles
+│   ├── components
+│   │   └── ui
+│   │       ├── Button.vue            # Reusable button component
+│   │       ├── DataTable.vue         # Reusable table with slots
+│   │       ├── StockPieChart.vue     # Stock health pie chart
+│   │       ├── Toast.vue             # Toast component
+│   │       ├── ToastContainer.vue    # Toast list container
+│   │       └── TopItemsBarChart.vue  # Top items bar chart
+│   ├── composables
+│   │   ├── useAuth.ts                # Authentication logic
+│   │   └── useToast.ts               # Toast state management
+│   ├── layouts
+│   │   └── default.vue               # Main application layout
+│   ├── middleware
+│   │   └── auth.global.ts            # Global route protection
+│   ├── pages
+│   │   ├── index.vue                 # Dashboard page
+│   │   ├── login.vue                 # Login page
+│   │   ├── settings.vue              # Settings page
+│   │   └── items
+│   │       ├── index.vue             # Items list page
+│   │       └── [id].vue              # Item detail / edit page
+│   └── plugins
+│       └── pocketbase.client.ts      # PocketBase Nuxt plugin
+└── pocketbase
+    ├── pb_migrations                 # PocketBase migrations
+    └── pb_data                       # Local database (gitignored)
 ```
 ---
 
