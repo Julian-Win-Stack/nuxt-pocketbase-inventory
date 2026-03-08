@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h1 class="text-2xl font-semibold text-slate-900 mb-6">Welcome, {{ userEmail }}</h1>
+    <h1 class="text-2xl font-semibold text-slate-100 mb-6">Welcome, {{ userEmail }}</h1>
     <div class="grid gap-4 sm:grid-cols-2">
-      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <p class="text-sm font-medium text-slate-500">Total items</p>
-        <p class="mt-1 text-2xl font-semibold text-slate-900">{{ totalItems }}</p>
+      <div class="rounded-lg border border-slate-700 bg-slate-800/50 p-6 shadow-sm">
+        <p class="text-sm font-medium text-slate-400">Total items</p>
+        <p class="mt-1 text-2xl font-semibold text-slate-100">{{ totalItems }}</p>
       </div>
-      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <p class="text-sm font-medium text-slate-500">Items below reorder point</p>
-        <p class="mt-1 text-2xl font-semibold text-amber-600">{{ itemsBelowReorder }}</p>
+      <div class="rounded-lg border border-slate-700 bg-slate-800/50 p-6 shadow-sm">
+        <p class="text-sm font-medium text-slate-400">Items below reorder point</p>
+        <p class="mt-1 text-2xl font-semibold text-amber-400">{{ itemsBelowReorder }}</p>
       </div>
     </div>
   </div>

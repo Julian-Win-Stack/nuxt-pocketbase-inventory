@@ -1,15 +1,15 @@
 <template>
   <div>
-    <NuxtLink to="/items" class="mb-4 inline-block text-sm text-slate-600 hover:text-slate-900 transition-colors">
+    <NuxtLink to="/items" class="mb-4 inline-block text-sm text-slate-400 hover:text-slate-100 transition-colors">
       ← Back to Items
     </NuxtLink>
-    <h1 class="mb-6 text-2xl font-semibold text-slate-900">Item Details</h1>
+    <h1 class="mb-6 text-2xl font-semibold text-slate-100">Item Details</h1>
 
-    <p v-if="loading" class="text-slate-500">Loading...</p>
-    <p v-if="error" class="rounded-lg bg-red-50 p-4 text-sm text-red-600">{{ error }}</p>
+    <p v-if="loading" class="text-slate-400">Loading...</p>
+    <p v-if="error" class="rounded-lg bg-red-900/30 border border-red-800 p-4 text-sm text-red-400">{{ error }}</p>
     <template v-else>
-      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <span class="mb-6 block h-48 w-48 overflow-hidden rounded-lg bg-slate-200">
+      <div class="rounded-lg border border-slate-700 bg-slate-800/50 p-6 shadow-sm">
+        <span class="mb-6 block h-48 w-48 overflow-hidden rounded-lg bg-slate-700">
           <img v-if="item?.image" :src="$pb.files.getUrl(item, item.image)" alt="" class="h-full w-full object-cover" />
         </span>
         <form @submit.prevent="handleSubmit" class="space-y-4">
@@ -18,48 +18,49 @@
             type="text"
             placeholder="Name"
             required
-            class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            class="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-2.5 text-slate-100 placeholder-slate-500 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
           />
           <input
             v-model="form.sku"
             type="text"
             placeholder="SKU"
-            class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            class="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-2.5 text-slate-100 placeholder-slate-500 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
           />
           <input
             v-model.number="form.qty"
             type="number"
             placeholder="Qty"
             required
-            class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            class="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-2.5 text-slate-100 placeholder-slate-500 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
           />
           <input
             v-model.number="form.reorderPoint"
             type="number"
             placeholder="Reorder Point"
             required
-            class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            class="w-full rounded-lg border border-slate-600 bg-slate-900 px-4 py-2.5 text-slate-100 placeholder-slate-500 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
           />
           <input
             type="file"
             accept="image/*"
             ref="fileInputRef"
-            class="w-full text-sm text-slate-600 file:mr-4 file:rounded-lg file:border-0 file:bg-slate-100 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-200"
+            class="w-full text-sm text-slate-400 file:mr-4 file:rounded-lg file:border-0 file:border-slate-600 file:bg-slate-700 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-200 hover:file:bg-slate-600"
           />
           <div class="flex gap-3 pt-2">
-            <button
+            <UiButton
               type="submit"
-              class="rounded-lg bg-slate-800 px-4 py-2.5 font-medium text-white hover:bg-slate-700 transition-colors"
+              variant="primary"
+              :loading="loading"
             >
               Save
-            </button>
-            <button
+            </UiButton>
+            <UiButton
               type="button"
+              variant="danger"
               @click="handleDelete"
-              class="rounded-lg border border-red-300 px-4 py-2.5 font-medium text-red-600 hover:bg-red-50 transition-colors"
             >
               Delete
-            </button>
+            </UiButton>
           </div>
         </form>
       </div>
