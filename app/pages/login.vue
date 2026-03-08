@@ -51,6 +51,7 @@ async function handleSubmit() {
   } catch (err) {
     errorMessage.value =
       err instanceof ClientResponseError ? err.message : 'Login failed'
+    useToast().add("Login failed", 'error')
   } finally {
     loading.value = false
   }

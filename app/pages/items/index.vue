@@ -10,8 +10,7 @@
       </UiButton>
     </div>
 
-    <p v-if="error" class="rounded-lg bg-red-900/30 border border-red-800 p-4 text-sm text-red-400">{{ error }}</p>
-    <div v-else class="space-y-4">
+    <div class="space-y-4">
       <div class="flex flex-wrap items-center gap-4">
         <input
           v-model="searchQuery"
@@ -210,6 +209,7 @@ async function fetchItems() {
       ...(file && { image: file }),
     })
     await fetchItems()
+    useToast().add("Item added successfully", 'success')
     if (fileInputRef.value) fileInputRef.value.value = ''
     showModal.value = false
   } catch (err) {
@@ -229,10 +229,12 @@ async function fetchItems() {
   try {
     await $pb.collection('items').delete(id)
     await fetchItems()
+    useToast().add("Item deleted successfully", 'success')
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Unknown error'
+    useToast().add("Item deletion failed", 'error')
   } finally {
-    loading.value = false
+    loading.value = false 
   }
  }
 

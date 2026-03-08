@@ -121,6 +121,7 @@ async function handleSubmit() {
       ...(file && { image: file }),
     })
     await fetchItem(id)
+    useToast().add("Item updated successfully", 'success')
     if (fileInputRef.value) fileInputRef.value.value = ''
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Unknown error'
@@ -138,6 +139,7 @@ async function handleDelete() {
     try {
       await $pb.collection('items').delete(id as string)
       navigateTo('/items')
+      useToast().add("Item deleted successfully", 'success')
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Unknown error'
     } finally {
